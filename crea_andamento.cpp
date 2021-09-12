@@ -8,11 +8,12 @@
 using namespace std;
 
 /*              -- TO DO --
-    - Metodo per lettura dei 4 file
     - Metodo per stampa risultati su file
-    - Struttura/Metodo per il risultato con tutti i mesi
+    - Struttura per il risultato con tutti i mesi
     - Gestire scrittura risultati in append cancellando prima il contenuto
+    - Ottimizzare lettura da file con un metodo a parte
 
+    - ---OK--- Metodo per lettura dei 4 file -> fatto all'inizio del main
     - ---OK--- Struttura per le linee lette dai file divise per file -> struct inputData{}, inputDataLine{}  
     - ---OK--- Struttura per le informazioni estrapolate -> struct pagamento{}    
     - ---OK--- Metodo per dividere le righe lette estrapolando prezzo/from/to -> formattatore()
@@ -170,7 +171,6 @@ int main()
     stampaRisultato(inputRead);
 
     // pagamento elem = formattatore(line);
-  
 
     return 0;
 }
