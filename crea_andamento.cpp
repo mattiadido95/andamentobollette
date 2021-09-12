@@ -3,13 +3,14 @@
 #include <fstream>
 #include <cstring>
 #include <vector>
+#include <chrono>
 
 using namespace std;
 
 /*              -- TO DO --
     - Metodo per lettura dei 4 file
     - Metodo per stampa risultati su file
-    - Struttura per il risultato con tutti i mesi
+    - Struttura/Metodo per il risultato con tutti i mesi
     - Gestire scrittura risultati in append cancellando prima il contenuto
 
     - ---OK--- Struttura per le linee lette dai file divise per file -> struct inputData{}, inputDataLine{}  
@@ -21,6 +22,11 @@ using namespace std;
     ./crea_andamento.exe && cat risultati.txt
     --------------------------------------------------------------------------------------------
 */
+struct risultatoMensile
+{
+    string mese;
+    string importo;
+};
 
 struct pagamento
 {
@@ -42,6 +48,41 @@ struct inputData
     vector<inputDataLine> internet;
     vector<inputDataLine> lucegas;
 };
+
+void stampaRisultato(inputData output)
+{
+
+    //inizializzazione strutture
+    risultatoMensile anno[12];
+    string mesi[12] = {"GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"};
+    for (int i = 0; i < 12; i++)
+    {
+        anno[i].importo = '0';
+        anno[i].mese = mesi[i];
+    }
+
+    //prendo la data odierna
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&in_time_t), "%d/%m/%Y %X");
+
+    ofstream out;
+    out.open("risultati.txt", std::ios_base::out);
+    out << "================ " << ss.str() << " =================" << endl;
+
+    for (int i = 0; i < 12; i++)
+    {
+        out << anno[i].mese << " " << anno[i].importo << endl;
+    }
+
+    out << "======================================================" << endl;
+    out.close();
+
+    cout << "orcodio";
+
+    return;
+}
 
 pagamento formattatore(string line)
 {
@@ -68,21 +109,26 @@ pagamento formattatore(string line)
 
 int main()
 {
+
+    // ESTRAZIONE DATI DAI FILE
     ifstream inFile;
     string line;
     string files[4] = {"acqua.txt", "tari.txt", "internet.txt", "lucegas.txt"};
     inputData inputRead;
     ofstream debug;
 
+    //prendo la data odierna
+    auto now = std::chrono::system_clock::now();
+    auto in_time_t = std::chrono::system_clock::to_time_t(now);
+    std::stringstream ss;
+    ss << std::put_time(std::localtime(&in_time_t), "%d/%m/%Y %X");
+
     debug.open("debug.txt", std::ios_base::app);
-    debug << "======================================================" << endl;
-    debug.seekp(0,ios::beg);
+    debug << "================ " << ss.str() << " =================" << endl;
 
     for (int i = 0; i < 4; i++)
     {
         inFile.open(files[i]);
-
-        //bool primaLettura = true;
 
         while (getline(inFile, line))
         {
@@ -91,9 +137,7 @@ int main()
             dataRead.info = line;
             dataRead.file = files[i];
 
-            debug << dataRead.info << " " << dataRead.file << endl;
-
-            cout << dataRead.info << endl;
+            debug << dataRead.info << " " << dataRead.file << endl; //debug
 
             switch (i)
             {
@@ -114,16 +158,19 @@ int main()
             }
         }
 
-        // pagamento elem = formattatore(line);
-
         inFile.close();
     }
 
     debug << "======================================================" << endl;
     debug.close();
+    //DATI ESTRATTI E INSERITI IN inputRead{}
 
-    ofstream outFile("risultati.txt");
-    outFile << "in costruzione....";
+    //------------------------------------------------------------------------
+
+    stampaRisultato(inputRead);
+
+    // pagamento elem = formattatore(line);
+  
 
     return 0;
 }
