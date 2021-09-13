@@ -9,10 +9,11 @@ using namespace std;
 
 /*              -- TO DO --
     - Metodo per stampa risultati su file
-    - Struttura per il risultato con tutti i mesi
+    - Metodo per calcolare costi su ogni mese
     - Gestire scrittura risultati in append cancellando prima il contenuto
     - Ottimizzare lettura da file con un metodo a parte
 
+    - ---OK--- Struttura per il risultato con tutti i mesi -> array anno fatto di struct risultatoMensile{}
     - ---OK--- Metodo per lettura dei 4 file -> fatto all'inizio del main
     - ---OK--- Struttura per le linee lette dai file divise per file -> struct inputData{}, inputDataLine{}  
     - ---OK--- Struttura per le informazioni estrapolate -> struct pagamento{}    
@@ -80,13 +81,12 @@ void stampaRisultato(inputData output)
     out << "======================================================" << endl;
     out.close();
 
-    cout << "orcodio";
-
     return;
 }
 
-pagamento formattatore(string line)
+void formattatore(string line)
 {
+    vector<pagamento> outLineFormat;
     pagamento elem;
 
     //conversione string to char[] per usare la strtok
@@ -105,12 +105,13 @@ pagamento formattatore(string line)
     elem.from = fr;
     elem.to = t;
 
-    return elem;
+    outLineFormat.push_back(elem);
+
+    return;
 }
 
 int main()
 {
-
     // ESTRAZIONE DATI DAI FILE
     ifstream inFile;
     string line;
@@ -170,7 +171,7 @@ int main()
 
     stampaRisultato(inputRead);
 
-    // pagamento elem = formattatore(line);
+    formattatore(line);
 
     return 0;
 }
