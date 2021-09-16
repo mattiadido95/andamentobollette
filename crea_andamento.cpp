@@ -1,12 +1,3 @@
-#include <iostream>
-#include <iomanip>
-#include <fstream>
-#include <cstring>
-#include <vector>
-#include <chrono>
-
-using namespace std;
-
 /*              -- TO DO --
     - Metodo per stampa risultati su file
     - Metodo per calcolare costi su ogni mese
@@ -24,91 +15,9 @@ using namespace std;
     ./crea_andamento.exe && cat risultati.txt
     --------------------------------------------------------------------------------------------
 */
-struct risultatoMensile
-{
-    string mese;
-    string importo;
-};
 
-struct pagamento
-{
-    string prezzo;
-    string from;
-    string to;
-};
-
-struct inputDataLine
-{
-    string info;
-    string file;
-};
-
-struct inputData
-{
-    vector<inputDataLine> acqua;
-    vector<inputDataLine> tari;
-    vector<inputDataLine> internet;
-    vector<inputDataLine> lucegas;
-};
-
-void stampaRisultato(inputData output)
-{
-
-    //inizializzazione strutture
-    risultatoMensile anno[12];
-    string mesi[12] = {"GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"};
-    for (int i = 0; i < 12; i++)
-    {
-        anno[i].importo = '0';
-        anno[i].mese = mesi[i];
-    }
-
-    //prendo la data odierna
-    auto now = std::chrono::system_clock::now();
-    auto in_time_t = std::chrono::system_clock::to_time_t(now);
-    std::stringstream ss;
-    ss << std::put_time(std::localtime(&in_time_t), "%d/%m/%Y %X");
-
-    ofstream out;
-    out.open("risultati.txt", std::ios_base::out);
-    out << "================ " << ss.str() << " =================" << endl;
-
-    for (int i = 0; i < 12; i++)
-    {
-        out << anno[i].mese << " " << anno[i].importo << endl;
-    }
-
-    out << "======================================================" << endl;
-    out.close();
-
-    return;
-}
-
-void formattatore(string line)
-{
-    vector<pagamento> outLineFormat;
-    pagamento elem;
-
-    //conversione string to char[] per usare la strtok
-    int n = line.length();
-    char charLine[n + 1];
-    strcpy(charLine, line.c_str());
-
-    //splitto line in prezz, from e to
-    char *p, *fr, *t;
-    p = strtok(charLine, "-");
-    fr = strtok(NULL, "-");
-    t = strtok(NULL, "-");
-
-    //compilo elem
-    elem.prezzo = p;
-    elem.from = fr;
-    elem.to = t;
-
-    outLineFormat.push_back(elem);
-
-    return;
-}
+#include "util.h"
+using namespace std;
 
 int main()
 {
@@ -125,12 +34,12 @@ int main()
     std::stringstream ss;
     ss << std::put_time(std::localtime(&in_time_t), "%d/%m/%Y %X");
 
-    debug.open("debug.txt", std::ios_base::app);
+    debug.open("output/debug.txt", std::ios_base::app);
     debug << "================ " << ss.str() << " =================" << endl;
 
     for (int i = 0; i < 4; i++)
     {
-        inFile.open(files[i]);
+        inFile.open("input/" + files[i]);
 
         while (getline(inFile, line))
         {
@@ -170,8 +79,6 @@ int main()
     //------------------------------------------------------------------------
 
     stampaRisultato(inputRead);
-
-    formattatore(line);
 
     return 0;
 }
