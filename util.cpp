@@ -2,9 +2,35 @@
 
 using namespace std;
 
-void stampaRisultato(inputData output)
+void stampaRisultato(inputDataList inputDatas)
 {
-    //inizializzazione strutture
+    for (int i = 0; i < inputDatas.acqua.size(); i++)
+    {
+        inputDatas.acqua[i].lineStringSplit = formatta(inputDatas.acqua[i].lineRead);        //prendo prezzo, from e to
+        inputDatas.acqua[i].lineIntSplit = formattaInt(inputDatas.acqua[i].lineStringSplit); //prendo g1,g2,m2,m1 interi
+    }
+    for (int i = 0; i < inputDatas.tari.size(); i++)
+    {
+        inputDatas.acqua[i].lineStringSplit = formatta(inputDatas.acqua[i].lineRead);        //prendo prezzo, from e to
+        inputDatas.acqua[i].lineIntSplit = formattaInt(inputDatas.acqua[i].lineStringSplit); //prendo g1,g2,m2,m1 interi
+    }
+    for (int i = 0; i < inputDatas.internet.size(); i++)
+    {
+        inputDatas.acqua[i].lineStringSplit = formatta(inputDatas.acqua[i].lineRead);        //prendo prezzo, from e to
+        inputDatas.acqua[i].lineIntSplit = formattaInt(inputDatas.acqua[i].lineStringSplit); //prendo g1,g2,m2,m1 interi
+    }
+    for (int i = 0; i < inputDatas.lucegas.size(); i++)
+    {
+        inputDatas.acqua[i].lineStringSplit = formatta(inputDatas.acqua[i].lineRead);        //prendo prezzo, from e to
+        inputDatas.acqua[i].lineIntSplit = formattaInt(inputDatas.acqua[i].lineStringSplit); //prendo g1,g2,m2,m1 interi
+    }
+
+
+
+
+
+
+    /*    //inizializzazione strutture
     risultatoMensile anno[12];
     string mesi[12] = {"GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"};
     for (int i = 0; i < 12; i++)
@@ -12,7 +38,6 @@ void stampaRisultato(inputData output)
         anno[i].importo = '0';
         anno[i].mese = mesi[i];
     }
-
     //prendo la data odierna
     auto now = std::chrono::system_clock::now();
     auto in_time_t = std::chrono::system_clock::to_time_t(now);
@@ -23,49 +48,25 @@ void stampaRisultato(inputData output)
     out.open("output/risultati.txt", std::ios_base::out);
     out << "================ " << ss.str() << " =================" << endl;
 
-    formattatore(*anno, output);
-
     for (int i = 0; i < 12; i++)
     {
         out << anno[i].mese << " " << anno[i].importo << endl;
     }
 
     out << "======================================================" << endl;
-    out.close();
+    out.close(); */
 
     return;
 };
 
-diffMesi estraiPeriodo(pagamento elem)
+split formatta(string line)
 {
-    //conversione string to char[] per usare la strtok
-    int n = elem.from.length();
-    char fromline[n + 1];
-    strcpy(fromline, elem.from.c_str());
-    //conversione string to char[] per usare la strtok
-    int m = elem.to.length();
-    char toline[m + 1];
-    strcpy(toline, elem.to.c_str());
-    char *mese1, *mese2, *gg1, *gg2;
-    gg1 = strtok(fromline, "/");
-    mese1 = strtok(NULL, "/");
-    gg2 = strtok(toline, "/");
-    mese2 = strtok(NULL, "/");
+    // estrae giorno mese per il periodo di riferimento del pagamento
+    // viene chiamata dalla funzione Formattatore()
+    // restituisce un oggetto diffMesi
 
-    diffMesi elem;
-    elem.m1 = atoi(mese1);
-    elem.g1 = atoi(gg1);
-    elem.m2 = atoi(mese2);
-    elem.g2 = atoi(gg2);
+    split elem;
 
-    cout << m1 << " " << g1 << " " << m2 << " " << g2 << " " << endl;
-
-    return elem;
-}
-
-pagamento formatta(string line, string file)
-{
-    pagamento elem;
     //conversione string to char[] per usare la strtok
     int n = line.length();
     char charLine[n + 1];
@@ -81,29 +82,44 @@ pagamento formatta(string line, string file)
     elem.prezzo = p;
     elem.from = fr;
     elem.to = t;
-    elem.file = file;
-
-    diffMesi estrazione = estraiPeriodo(elem);
-
 
     return elem;
 }
 
-void formattatore(risultatoMensile output, inputData data)
+spltInteger formattaInt(split elem)
 {
+    char *mese1, *mese2, *gg1, *gg2;
 
-    /* 
-        per ogni data
-            chiamo la formatta
-                mi ritorna un elem
-            chiamo la assegnaMese
-                mi torna un elem
-                assegno questo elem in output.mese corrispondente
-     */
+    //spezzo from
+    int n = elem.from.length();
+    char fromline[n + 1];
+    strcpy(fromline, elem.from.c_str());
+    gg1 = strtok(fromline, "/");
+    mese1 = strtok(NULL, "/");
+    //spezzo to
+    int m = elem.to.length();
+    char toline[m + 1];
+    strcpy(toline, elem.to.c_str());
+    gg2 = strtok(toline, "/");
+    mese2 = strtok(NULL, "/");
 
-    string line = "60-06/06/2021-30/08/2021";
-    string file = "txzt";
-    formatta(line, file);
+    //converto tutto in interi
+    spltInteger splitInt;
+    splitInt.mese1 = atoi(mese1);
+    splitInt.giorno1 = atoi(gg1);
+    splitInt.mese2 = atoi(mese2);
+    splitInt.giorno2 = atoi(gg2);
+    //cout << m1 << " " << g1 << " " << m2 << " " << g2 << " " << endl;
 
-    return;
+    return splitInt;
+}
+
+competenza trovaMesiCompetenza(inputDataLine elem) {
+
+    competenza outElem;
+
+    
+
+
+    return outElem;    
 }
