@@ -25,7 +25,7 @@ int main()
     ifstream inFile;
     string line;
     string files[4] = {"acqua.txt", "tari.txt", "internet.txt", "lucegas.txt"};
-    inputData inputRead;
+    inputDataList inputListRead;
     ofstream debug;
 
     //prendo la data odierna
@@ -45,24 +45,24 @@ int main()
         {
             line.length() == 25 ? line.erase(line.length() - 1) : ""; //elimino il carattere \n
             inputDataLine dataRead;
-            dataRead.info = line;
-            dataRead.file = files[i];
+            dataRead.lineRead = line;
+            dataRead.fileSource = files[i];
 
-            debug << dataRead.info << " " << dataRead.file << endl; //debug
+            debug << dataRead.lineRead << " " << dataRead.fileSource << endl; //debug
 
             switch (i)
             {
             case 0:
-                inputRead.acqua.push_back(dataRead);
+                inputListRead.acqua.push_back(dataRead);
                 break;
             case 1:
-                inputRead.tari.push_back(dataRead);
+                inputListRead.tari.push_back(dataRead);
                 break;
             case 2:
-                inputRead.internet.push_back(dataRead);
+                inputListRead.internet.push_back(dataRead);
                 break;
             case 3:
-                inputRead.lucegas.push_back(dataRead);
+                inputListRead.lucegas.push_back(dataRead);
                 break;
             default:
                 break;
@@ -78,7 +78,7 @@ int main()
 
     //------------------------------------------------------------------------
 
-    stampaRisultato(inputRead);
+    stampaRisultato(inputListRead);
 
     return 0;
 }
