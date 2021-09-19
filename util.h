@@ -7,27 +7,33 @@
 
 using namespace std;
 
-struct risultatoMensile
+struct competenza
 {
-    string mese;
-    string importo;
+    vector<int> mesiCompetenza;
+    int prezzoMensile;
 };
-
-struct pagamento
+struct spltInteger
+{
+    int mese1;
+    int giorno1;
+    int mese2;
+    int giorno2;
+};
+struct split
 {
     string prezzo;
     string from;
     string to;
-    string file;
 };
-
 struct inputDataLine
 {
-    string info;
-    string file;
+    string lineRead;
+    string fileSource;
+    split lineStringSplit;
+    spltInteger lineIntSplit;
+    competenza infoCompentenza;
 };
-
-struct inputData
+struct inputDataList
 {
     vector<inputDataLine> acqua;
     vector<inputDataLine> tari;
@@ -35,10 +41,6 @@ struct inputData
     vector<inputDataLine> lucegas;
 };
 
-struct diffMesi {
-    int m1,m2,g1,g2;
-}
-
-void stampaRisultato(inputData);
-void formattatore(risultatoMensile, inputData);
-
+void stampaRisultato(inputDataList);
+split formatta(string);
+spltInteger formattaInt(split);
