@@ -66,11 +66,11 @@ int main()
                 break;
             default:
                 break;
-            }
-        }
+            };
+        };
 
         inFile.close();
-    }
+    };
 
     debug << "======================================================" << endl;
     debug.close();

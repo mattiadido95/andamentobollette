@@ -41,6 +41,13 @@ struct inputDataList
     vector<inputDataLine> lucegas;
 };
 
+struct risultatoMensile {
+    int importo;
+    string mese;
+};
+
 void stampaRisultato(inputDataList);
 split formatta(string);
 spltInteger formattaInt(split);
+vector<int> trovaMesiCompetenza(spltInteger);
+int prezzoMensile(inputDataLine);
