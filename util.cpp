@@ -4,6 +4,19 @@ using namespace std;
 
 void stampaRisultato(inputDataList inputDatas)
 {
+    //inizializzazione strutture
+    risultatoMensile anno[12];
+    string mesi[12] = {"GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"};
+    for (int i = 0; i < 12; i++)
+    {
+        anno[i].importo = 0;
+        anno[i].mese = mesi[i];
+        anno[i].acqua = 0;
+        anno[i].tari = 0;
+        anno[i].internet = 0;
+        anno[i].lucegas = 0;
+    }
+
     for (int i = 0; i < inputDatas.acqua.size(); i++)
     {
         inputDatas.acqua[i].lineStringSplit = formatta(inputDatas.acqua[i].lineRead);                               //prendo prezzo, from e to
@@ -33,21 +46,13 @@ void stampaRisultato(inputDataList inputDatas)
         inputDatas.lucegas[i].infoCompentenza.prezzoMensile = prezzoMensile(inputDatas.lucegas[i]);                     // trovo il prezzo mensile
     }
 
-    //inizializzazione strutture
-    risultatoMensile anno[12];
-    string mesi[12] = {"GEN", "FEB", "MAR", "APR", "MAG", "GIU", "LUG", "AGO", "SET", "OTT", "NOV", "DIC"};
-    for (int i = 0; i < 12; i++)
-    {
-        anno[i].importo = 0;
-        anno[i].mese = mesi[i];
-    }
-
     for (int i = 0; i < inputDatas.acqua.size(); i++)
     {
         for (int j = 0; j < inputDatas.acqua[i].infoCompentenza.mesiCompetenza.size(); j++)
         {
             int k = inputDatas.acqua[i].infoCompentenza.mesiCompetenza[j];
             anno[k - 1].importo += inputDatas.acqua[i].infoCompentenza.prezzoMensile;
+            anno[k - 1].acqua += inputDatas.acqua[i].infoCompentenza.prezzoMensile;
         };
     };
     for (int i = 0; i < inputDatas.tari.size(); i++)
@@ -56,6 +61,7 @@ void stampaRisultato(inputDataList inputDatas)
         {
             int k = inputDatas.tari[i].infoCompentenza.mesiCompetenza[j];
             anno[k - 1].importo += inputDatas.tari[i].infoCompentenza.prezzoMensile;
+            anno[k - 1].tari += inputDatas.tari[i].infoCompentenza.prezzoMensile;
         };
     };
     for (int i = 0; i < inputDatas.internet.size(); i++)
@@ -64,6 +70,7 @@ void stampaRisultato(inputDataList inputDatas)
         {
             int k = inputDatas.internet[i].infoCompentenza.mesiCompetenza[j];
             anno[k - 1].importo += inputDatas.internet[i].infoCompentenza.prezzoMensile;
+            anno[k - 1].internet += inputDatas.internet[i].infoCompentenza.prezzoMensile;
         };
     };
     for (int i = 0; i < inputDatas.lucegas.size(); i++)
@@ -72,6 +79,7 @@ void stampaRisultato(inputDataList inputDatas)
         {
             int k = inputDatas.lucegas[i].infoCompentenza.mesiCompetenza[j];
             anno[k - 1].importo += inputDatas.lucegas[i].infoCompentenza.prezzoMensile;
+            anno[k - 1].lucegas += inputDatas.lucegas[i].infoCompentenza.prezzoMensile;
         };
     };
 
@@ -87,7 +95,12 @@ void stampaRisultato(inputDataList inputDatas)
 
     for (int i = 0; i < 12; i++)
     {
-        out << anno[i].mese << " " << anno[i].importo << endl;
+        out << anno[i].mese << " " << anno[i].importo
+            << " [acqua: " << anno[i].acqua
+            << "] [tari: " << anno[i].tari
+            << "] [internet: " << anno[i].internet
+            << "] [lucegas: " << anno[i].lucegas
+            << "]" << endl;
     }
 
     out << "======================================================" << endl;

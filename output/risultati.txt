@@ -1,14 +1,14 @@
-================ 21/09/2021 21:57:02 =================
-GEN 0
-FEB 0
-MAR 0
-APR 0
-MAG 0
-GIU 197
-LUG 146
-AGO 54
-SET 0
-OTT 0
-NOV 0
-DIC 0
+================ 21/09/2021 22:15:22 =================
+GEN 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+FEB 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+MAR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+APR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+MAG 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+GIU 197 [acqua: 50] [tari: 0] [internet: 26] [lucegas: 121]
+LUG 146 [acqua: 50] [tari: 0] [internet: 26] [lucegas: 70]
+AGO 54 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 54]
+SET 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+OTT 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+NOV 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+DIC 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 ======================================================

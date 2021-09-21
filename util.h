@@ -41,9 +41,11 @@ struct inputDataList
     vector<inputDataLine> lucegas;
 };
 
-struct risultatoMensile {
+struct risultatoMensile
+{
     int importo;
     string mese;
+    int acqua, tari, internet, lucegas;
 };
 
 void stampaRisultato(inputDataList);
