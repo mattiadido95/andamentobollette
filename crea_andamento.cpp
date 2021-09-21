@@ -1,8 +1,7 @@
 /*              -- TO DO --
-    - Metodo per stampa risultati su file
-    - Metodo per calcolare costi su ogni mese
     - Gestire scrittura risultati in append cancellando prima il contenuto
     - Ottimizzare lettura da file con un metodo a parte
+    - Inserire andamento per benzina e spesa cibo
 
     - ---OK--- Struttura per il risultato con tutti i mesi -> array anno fatto di struct risultatoMensile{}
     - ---OK--- Metodo per lettura dei 4 file -> fatto all'inizio del main
