@@ -11,7 +11,7 @@
     - ---OK--- Metodo per dividere le righe lette estrapolando prezzo/from/to -> formattatore()
 
     --------------------------------------------------------------------------------------------
-    g++ -o crea_andamento.exe crea_andamento.cpp && ./crea_andamento.exe && cat risultati.txt
+    g++ -o crea_andamento.exe crea_andamento.cpp util.cpp && ./crea_andamento.exe && cat risultati.txt
     ./crea_andamento.exe && cat risultati.txt
     --------------------------------------------------------------------------------------------
 */
