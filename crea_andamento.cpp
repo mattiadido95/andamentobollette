@@ -11,7 +11,7 @@
 
     --------------------------------------------------------------------------------------------
     g++ -o crea_andamento.exe crea_andamento.cpp util.cpp && ./crea_andamento.exe && cat risultati.txt
-    ./crea_andamento.exe && cat risultati.txt
+    ./crea_andamento && cat risultati.txt
     --------------------------------------------------------------------------------------------
 */
 
