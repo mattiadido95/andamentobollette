@@ -1,4 +1,4 @@
-================ 01/11/2021 08:10:10 =================
+================ 14/11/2021 22:06:32 =================
 GEN 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 FEB 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 MAR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
@@ -9,6 +9,6 @@ LUG 176 [acqua: 50] [tari: 30] [internet: 26] [lucegas: 70]
 AGO 110 [acqua: 0] [tari: 30] [internet: 26] [lucegas: 54]
 SET 126 [acqua: 0] [tari: 30] [internet: 26] [lucegas: 70]
 OTT 30 [acqua: 0] [tari: 30] [internet: 0] [lucegas: 0]
-NOV 30 [acqua: 0] [tari: 30] [internet: 0] [lucegas: 0]
+NOV 90 [acqua: 0] [tari: 30] [internet: 0] [lucegas: 60]
 DIC 30 [acqua: 0] [tari: 30] [internet: 0] [lucegas: 0]
 ======================================================
