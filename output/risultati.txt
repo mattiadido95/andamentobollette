@@ -1,5 +1,5 @@
-================ 26/01/2022 11:36:11 =================
-GEN 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
+================ 24/02/2022 12:41:39 =================
+GEN 132 [acqua: 0] [tari: 0] [internet: 26] [lucegas: 106]
 FEB 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 MAR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 APR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
@@ -10,5 +10,5 @@ AGO 135 [acqua: 25] [tari: 30] [internet: 26] [lucegas: 54]
 SET 151 [acqua: 25] [tari: 30] [internet: 26] [lucegas: 70]
 OTT 141 [acqua: 25] [tari: 30] [internet: 26] [lucegas: 60]
 NOV 151 [acqua: 25] [tari: 30] [internet: 26] [lucegas: 70]
-DIC 127 [acqua: 0] [tari: 30] [internet: 0] [lucegas: 97]
+DIC 153 [acqua: 0] [tari: 30] [internet: 26] [lucegas: 97]
 ======================================================
