@@ -1,7 +1,7 @@
-================ 15/04/2022 10:02:04 =================
+================ 25/04/2022 11:07:57 =================
 GEN 132 [acqua: 0] [tari: 0] [internet: 26] [lucegas: 106]
-FEB 78 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 78]
-MAR 78 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 78]
+FEB 104 [acqua: 0] [tari: 0] [internet: 26] [lucegas: 78]
+MAR 104 [acqua: 0] [tari: 0] [internet: 26] [lucegas: 78]
 APR 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 MAG 0 [acqua: 0] [tari: 0] [internet: 0] [lucegas: 0]
 GIU 227 [acqua: 50] [tari: 30] [internet: 26] [lucegas: 121]
