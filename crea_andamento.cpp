@@ -1,25 +1,46 @@
 /*              -- TO DO --
-    - Gestire scrittura risultati in append cancellando prima il contenuto
-    - Ottimizzare lettura da file con un metodo a parte
-    - Inserire andamento per benzina e spesa cibo
-
-    - ---OK--- Struttura per il risultato con tutti i mesi -> array anno fatto di struct risultatoMensile{}
-    - ---OK--- Metodo per lettura dei 4 file -> fatto all'inizio del main
-    - ---OK--- Struttura per le linee lette dai file divise per file -> struct inputData{}, inputDataLine{}  
-    - ---OK--- Struttura per le informazioni estrapolate -> struct pagamento{}    
-    - ---OK--- Metodo per dividere le righe lette estrapolando prezzo/from/to -> formattatore()
 
     --------------------------------------------------------------------------------------------
-    g++ -o crea_andamento.exe crea_andamento.cpp util.cpp && ./crea_andamento.exe && cat risultati.txt
-    ./crea_andamento && cat output/risultati.txt
+    g++ -o crea_andamento.exe crea_andamento.cpp util.cpp && ./crea_andamento.exe && cat output/risultati.txt
+    ./crea_andamento.exe && cat output/risultati.txt
     --------------------------------------------------------------------------------------------
 */
 
 #include "util.h"
 using namespace std;
 
+int callInitialMenu() {
+    int initialMenuChoice;
+    int choiceYear = 0;
+    cout << "--- BENVENUTO ---" << endl;
+    cout << "Selezionare anno:" << endl;
+    cout << "1) 2021" << endl;
+    cout << "2) 2022" << endl;
+    cin >> initialMenuChoice;
+    switch (initialMenuChoice) {
+        case 1:
+            cout << "Andamento 2021" << endl;
+            choiceYear = 2021;
+            break;
+        case 2:
+            cout << "Andamento 2022" << endl;
+            choiceYear = 2022;
+            break;
+        default:
+            cout << "Andamento non disponibile" << endl;            
+            break;
+    }
+    return choiceYear;
+}
+
+
 int main()
 {
+    int year = callInitialMenu();
+    if (year == 0) {
+        return 0;
+    }
+
     // ESTRAZIONE DATI DAI FILE
     ifstream inFile;
     string line;
@@ -36,9 +57,14 @@ int main()
     debug.open("output/debug.txt", std::ios_base::app);
     debug << "================ " << ss.str() << " =================" << endl;
 
+    // convert int to string
+    stringstream ssYear;
+    ssYear << year;
+    string yearString = ssYear.str();    
+
     for (int i = 0; i < 4; i++)
     {
-        inFile.open("input/" + files[i]);
+        inFile.open("input/"+ yearString + "/" + files[i]);
 
         while (getline(inFile, line))
         {
